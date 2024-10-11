@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
+    <title>kyc</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Include stylesheet -->
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet" />
+    <!-- Include the Quill library -->
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
+</head>
+
+<Body>
+
+    <!-- Create the editor container -->
+    <div id="editor">
+    </div>
+    <button id="add-chip">Add chip</button>
+</Body>
+
+
+<!-- Initialize Quill editor -->
+<script>
+    const Quill = window.Quill;
+    let Embed = Quill.import('blots/embed');
+
+    class ChipBlot extends Embed {
+        static blotName = 'chip'
+        static tagName = 'span'
+        static className = ['chip']
+
+        static create(value) {
+            let node = super.create();
+            node.setAttribute('contenteditable', 'false'); // Make it non-editable
+            node.innerText = value; // Set the chip's text content
+            return node;
+        }
+
+        static value(node) {
+            return node;
+        }
+    }
+
+    Quill.register(ChipBlot);
+
+    const quill = new Quill('#editor', {
+        theme: 'snow'
+    });
+
+
+    function insertChip(text) {
+        const range = quill.getSelection(); // Get current selection
+
+        if (range) {
+
+            // Insertar el chip en la posición actual
+            quill.insertEmbed(range.index, 'chip', text, Quill.sources.USER);
+
+            quill.insertText(range.index + 2, ' ', Quill.sources.USER);
+            // Set the cursor after the chip and space
+            quill.setSelection(range.index + 1, Quill.sources.SILENT);
+        }
+    }
+
+    document.getElementById("add-chip").addEventListener('click', function () {
+        console.log(Quill.imports)
+        insertChip('mi variable chida')
+    })
+</script>
+
+</html>
