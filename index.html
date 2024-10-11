@@ -17,6 +17,7 @@
     <div id="editor">
     </div>
     <button id="add-chip">Add chip</button>
+    <button id="get-content">print content</button>
 </Body>
 
 <!-- Initialize Quill editor -->
@@ -65,6 +66,12 @@
     document.getElementById("add-chip").addEventListener('click', function () {
         console.log(Quill.imports)
         insertChip('mi variable chida')
+    })
+
+
+    document.getElementById("get-content").addEventListener('click', () => {
+        const delta = quill.getContents()
+        console.log(delta)
     })
 </script>
 
