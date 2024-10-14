@@ -30,11 +30,9 @@ function insertChip(text) {
     const range = quill.getSelection(); // Get current selection
 
     if (range) {
-
         // Insertar el chip en la posición actual
         quill.insertEmbed(range.index, 'chip', text, Quill.sources.USER);
-
-        quill.insertText(range.index + 2, ' ', Quill.sources.USER);
+        quill.insertText(range.index + 1, '\u200B', Quill.sources.USER);
         // Set the cursor after the chip and space
         quill.setSelection(range.index + 1, Quill.sources.SILENT);
     }
