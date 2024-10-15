@@ -12,10 +12,53 @@
 </head>
 
 <Body>
-
-    <!-- Create the editor container -->
-    <div id="editor">
+    <div id="toolbar">
+        <!-- Add font size dropdown -->
+        <select class="ql-size">
+            <option value="small"></option>
+            <!-- Note a missing, thus falsy value, is used to reset to default -->
+            <option selected></option>
+            <option value="large"></option>
+            <option value="huge"></option>
+        </select>
+        <!-- Add a bold button -->
+        <button class="ql-bold"></button>
+        <!-- Add subscript and superscript buttons -->
+        <button class="ql-script" value="sub"></button>
+        <button class="ql-script" value="super"></button>
+        <button id="custom-button">Variable</button>
     </div>
+    <!-- Create the editor container -->
+    <div id="editor"></div>
+
+    <div id="dropdown-menu" style="display: none">
+        <label for="select1">Catalogo/Viaje</label>
+        <select id="select1">
+            <option value="general">General</option>
+            <option value="clientes">Clientes</option>
+            <option value="viajes">Viajes</option>
+        </select>
+        <br>
+        <label for="select2">Campo</label>
+        <select id="select2">
+            <option value="@fecha">Fecha actual</option>
+            <option value="@cliente">Nombre Cliente</option>
+            <option value="@RFC.cliente">RFC Cliente</option>
+            <option value="@IDViaje">Folio Viaje</option>
+            <option value="@FechaCarga">Fecha Carga</option>
+            <option value="@FechaEntrega">Fecha Entrega</option>
+            <option value="@PesoMateriales">Peso total Material</option>
+            <option value="@Transportista">Nombre Empresa Transportista</option>
+            <option value="@RFC.Transportista">RFC de la Empresa Transportista</option>
+            <option value="@conceptofact">Concepto de facturación</option>
+            <option value="@ruta">Nombre Ruta y Trayectos</option>
+            <option value="@NombreOrigen/@NombreDestino">Nombre Remitente/Destinatario</option>
+            <option value="@DireccionOrigen/@DireccionDestino">Dirección Remitente/Destinatario</option>
+        </select>
+        <br>
+        <button id="apply-selection">Variable</button>
+    </div>
+
     <button id="add-chip">Add chip</button>
     <button id="get-content">print content</button>
 
